@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+    # before_action :signed_in_user, only: [:index,:edit,:update, :destroy]
     before_action :set_task, only: [:show, :edit, :update, :destroy]
 
 #index all tasks
@@ -13,15 +14,21 @@ end
 
 #show task
 def show
+    respond_to do |format|
+        format.html
+        format.js
+    end
 end
 
 #create new task log
 def create
     @task = Task.new(task_params)
 
-    if task.save
-        redirect_to @task, notice: 'Task successfully logged.'
+    if @task.save
+        flash[:success] = 'Task listed!'
+        redirect_to @task
     else
+        flash[:success] = 'All fields must be filled before a task can be created.'
         render :new
     end
 end
@@ -38,7 +45,7 @@ end
 #delete task log
 def destroy
     @task.destroy
-    redirect_to rooth_path, notice: 'Task was successfully deleted.'
+    redirect_to root_path, notice: 'Task was successfully deleted.'
 end
 
 private
@@ -47,5 +54,6 @@ private
     end
 
     def task_params
-        params.require(:task).permit(:task_title, :description, :due_date, :category:references)
+        params.require(:task).permit(:task_title, :description, :due_date, :completed)
     end
+end
