@@ -1,6 +1,8 @@
 <h1>Hello, user!</h1>
 <h3>Here are your current tasks:</h3>
 
+<br>
+
 <%= render(:partial => 'tasks', :collection => @tasks) || 'No entries found.'%>
 
    <div id="modal-window" class="modal hide fade" 
