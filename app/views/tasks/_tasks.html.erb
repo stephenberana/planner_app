@@ -17,7 +17,7 @@
                 <td>
                     <%= form_for(:task) do |f|%>
                         <div class="forms">
-                            <%= f.check_box :completed %>
+                            <%= f.check_box :completed, checked_value = "1", unchecked_value = "0" %>
                         </div>
                         <% end %>
                 </td>    

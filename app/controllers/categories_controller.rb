@@ -5,6 +5,11 @@ def new
     @category = Category.new
 end
 
+#index all categories
+def index
+    @categories = Category.all
+end
+
 #show category
 def show
 end

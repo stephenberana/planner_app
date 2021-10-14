@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Category.create([
-    { category_title: 'Personal' },
-    { category_title: 'Work' },
-    { category_title: 'School' }
+    { category_title: 'Personal', category_description: 'Tasks relating to personal development.' },
+    { category_title: 'Work', category_description: 'Tasks relating to career growth.' },
+    { category_title: 'School', category_description: 'Tasks relating to academic load.' }
 ])
