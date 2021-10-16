@@ -5,13 +5,8 @@
 
 <%= render(:partial => 'tasks', :collection => @tasks) || 'No entries found.'%>
 
-   <div id="modal-window" class="modal hide fade" 
-    role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-            <div class="modal-content"></div>
-            </div>
-    </div>
-        
+<%= render 'show' %>
+
 <br> 
 <button type="button">
     <p class="text"><%= link_to 'Create New Task Log', new_task_path %></P>

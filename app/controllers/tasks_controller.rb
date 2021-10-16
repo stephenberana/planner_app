@@ -46,7 +46,12 @@ def destroy
 end
 
 #mark task as complete
-def complete
+def set_completed
+    byebug
+    @task = Task.find(params[:id])
+    @task.update_column :completed, params[:completed]
+
+    render nothing: true
 end
 
 private
