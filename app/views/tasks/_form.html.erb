@@ -16,7 +16,7 @@
 
 <div class="mb-3"> 
     <%= form.label :category_title, style: 'padding: 1em' %>
-    <%= form.select :category_title, Category.all.collect { |c| [c.category_title, c.id] }, { prompt: "Select a category" }, { class: 'form-select' } %>
+    <%= form.select :category_id, Category.all.collect { |c| [c.category_title, c.id] }, { prompt: "Select a category" }, { class: 'form-select' } %>
 </div>
 
 <%# showing errors %>

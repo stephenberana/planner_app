@@ -4,6 +4,7 @@
     <tr>
         <th scope="col">Task</th>
         <th scope="col">Due Date</th>
+        <th scope="col">Category</th>
         <th scope="col">Completed?</th>
         <th scope="col" colspan="3" >Options</th>
     </tr>
@@ -14,14 +15,8 @@
             <tr>
                 <td><%= task.task_title %></td>
                 <td><%= task.due_date %></td>
-                <td>
-                    <%= form_for(:task) do |f|%>
-                        <div class="forms">
-                            <%= f.check_box :completed, checked_value = "1", unchecked_value = "0" %>
-                        </div>
-                        <% end %>
-                </td>    
-                <%# modal     %>
+                <td><%= task.category_id %></td>
+                <td><%= task.completed %> Checkbox here </td>
                 <td><%= link_to 'Expand', task, 
                     {:remote => true, 'data-toggle' => '#modal', 'data-target' => '#modal-window', class: 'btn btn-primary btn-lg'} %>
                     <div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

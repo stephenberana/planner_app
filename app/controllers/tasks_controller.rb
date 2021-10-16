@@ -14,10 +14,7 @@ end
 
 #show task
 def show
-    respond_to do |format|
-        format.html
-        format.js
-    end
+redirect_to root_path
 end
 
 #create new task log
@@ -48,12 +45,16 @@ def destroy
     redirect_to root_path, notice: 'Task was successfully deleted.'
 end
 
+#mark task as complete
+def complete
+end
+
 private
     def set_task
         @task = Task.find(params[:id])
     end
 
     def task_params
-        params.require(:task).permit(:task_title, :description, :due_date, :category_title)
+        params.require(:task).permit(:task_title, :description, :due_date, :category_id)
     end
 end
