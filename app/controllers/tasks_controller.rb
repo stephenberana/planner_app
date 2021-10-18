@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
     # before_action :signed_in_user, only: [:index,:edit,:update, :destroy]
+    before_action :authenticate_user!
     before_action :set_task, only: [:show, :edit, :update, :destroy]
 
 #index all tasks
@@ -14,7 +15,7 @@ end
 
 #show task
 def show
-redirect_to root_path
+redirect_to tasks
 end
 
 #create new task log
@@ -53,7 +54,7 @@ end
 #mark task as complete
 def set_completed
     byebug
-    @task = Task.find(params[:id])
+    @task = current_user.Task.find(params[:id])
     @task.update_column :completed, params[:completed]
 
     render nothing: true
@@ -62,6 +63,7 @@ end
 private
     def set_task
         @task = Task.find(params[:id])
+        @task.user_id = current_user.id
     end
 
     def task_params

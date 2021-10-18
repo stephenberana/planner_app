@@ -1,4 +1,12 @@
+<% if user_signed_in? %>
+
+<%= render(partial => "views/tasks/index")%>
+
+<% else %>
+
 <h1>Hello World!</h1>
 This is my first Rails Webpage...
 
 Gray shimmering bokeh gif here
+
+<% end %>
