@@ -1,21 +1,21 @@
 <%= form_with(model:task) do |form| %>
 <div class="form-group">
-    <%= form.label :task_title, style: 'padding: 1em' %>    
-    <%= form.text_field :task_title, class: 'form-control', style: 'width:40%' %>
+    <% form.label :task_title, style: 'padding: 24px' %>    
+    <%= form.text_field :task_title, class: 'form-control mt-3 mb-3', style: 'width: 40%', placeholder: "Task Name" %>
 </div>
 
 <div class="form-group">
-    <%= form.label :description, style: 'padding: 1em' %>
-    <%= form.text_field :description, class: 'form-control', style: 'width: 40%' %>
+    <% form.label :description, style: 'padding: 24px' %>
+    <%= form.text_field :description, class: 'form-control mb-3', style: 'width: 40%', placeholder: "Task Description" %>
 </div>
 
 <div class="form-group">
-    <%= form.label :due_date, style: 'padding: 1em' %>
-    <%= form.date_field :due_date, class: 'form-control', style: 'width: 40%' %>
+    <%= form.label :due_date, style: 'padding: 24px' %>
+    <%= form.date_field :due_date, class: 'form-control', style: 'width: 30%' %>
 </div>
 
 <div class="mb-3"> 
-    <%= form.label :category_title, style: 'padding: 1em' %>
+    <%= form.label :category_title, style: 'padding: 24px' %>
     <%= form.select :category_id, Category.all.collect { |c| [c.category_title, c.id] }, { prompt: "Select a category" }, { class: 'form-select' } %>
 </div>
 
@@ -32,7 +32,7 @@
 <% end %>
 
 <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Submit", class: "btn btn-secondary" %>
 </div>
 
 <%end%>

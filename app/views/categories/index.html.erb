@@ -1,0 +1,8 @@
+<h1>Hello, <%= current_user.email %>!</h1>
+<h3>Here are your saved categories:</h3>
+
+<br>
+
+<%= render(:partial => 'categories') || 'No entries found.'%>
+
+<br> 

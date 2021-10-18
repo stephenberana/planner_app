@@ -1,13 +1,10 @@
-<h1>Hello, user!</h1>
+<h1>Hello, <%= current_user.email %>!</h1>
 <h3>Here are your current tasks:</h3>
 
 <br>
 
-<%= render(:partial => 'tasks', :collection => @tasks) || 'No entries found.'%>
+<%= render(:partial => 'tasks') || 'No entries found.'%>
 
 <%= render 'show' %>
 
-<br> 
-<button type="button">
-    <p class="text"><%= link_to 'Create New Task Log', new_task_path %></P>
-</button>       
+<br/>

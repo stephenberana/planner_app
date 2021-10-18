@@ -30,6 +30,11 @@ def create
     end
 end
 
+#find editable task
+def edit
+    @task = Task.find(params[:id])
+end
+
 #update task log
 def update 
     if @task.update(task_params)
