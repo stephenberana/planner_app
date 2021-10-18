@@ -11,7 +11,7 @@
     <ul class="navbar-nav mr-auto">
         <li class="nav-item">
         
-        <% if user_signed_in? %>
+        <% if current_user %>
             <li class="nav-item">
                 <%= link_to "Add Task", new_task_path, class: "nav-link"%>
             </li>

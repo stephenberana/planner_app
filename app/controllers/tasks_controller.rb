@@ -1,11 +1,10 @@
 class TasksController < ApplicationController
-    # before_action :signed_in_user, only: [:index,:edit,:update, :destroy]
     before_action :authenticate_user!
     before_action :set_task, only: [:show, :edit, :update, :destroy]
 
 #index all tasks
 def index
-    @tasks = Task.all
+    @tasks = current_user.tasks
 end
 
 #initiate new task
@@ -15,25 +14,25 @@ end
 
 #show task
 def show
-redirect_to tasks
+    # redirect_to action: "index"
 end
 
 #create new task log
 def create
-    @task = Task.new(task_params)
+    @task = current_user.task.new(task_params)
 
     if @task.save
         flash[:success] = 'Task listed!'
         redirect_to @task
     else
-        flash[:success] = 'All fields must be filled before a task can be created.'
+        flash[:warning] = 'All fields must be filled before a task can be created.'
         render :new
     end
 end
 
 #find editable task
 def edit
-    @task = Task.find(params[:id])
+    @task = current_user.Task.find(params[:id])
 end
 
 #update task log
@@ -52,21 +51,18 @@ def destroy
 end
 
 #mark task as complete
-def set_completed
-    byebug
-    @task = current_user.Task.find(params[:id])
-    @task.update_column :completed, params[:completed]
-
-    render nothing: true
-end
+# def set_completed
+#     @task = Task.find(params[:id])
+#     @task.update_column :completed, params[:completed]
+#     render nothing: true
+# end
 
 private
     def set_task
-        @task = Task.find(params[:id])
-        @task.user_id = current_user.id
+        @task = current_user.tasks.find(params[:id])
     end
 
     def task_params
-        params.require(:task).permit(:task_title, :description, :due_date, :category_id)
+        params.require(:task).permit(:task_title, :description, :due_date, :category_id, :user_id)
     end
 end
