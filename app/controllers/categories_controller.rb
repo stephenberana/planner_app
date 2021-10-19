@@ -4,12 +4,12 @@ class CategoriesController < ApplicationController
 
 #initiate new category
 def new
-    @category = current_user.categories
+    @category = current_user.categories.build
 end
 
 #index all categories
 def index
-    @categories = current_user.categories.build
+    @categories = current_user.categories
 end
 
 #show category
