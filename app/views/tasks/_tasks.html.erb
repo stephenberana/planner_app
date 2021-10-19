@@ -18,9 +18,7 @@
                 <td><%= task.category.category_title %></td>
                 <td><%= check_box_tag :completed, task.id, task.completed?, class: 'task-completed-cb' %>
                 </td>
-                <td><%= link_to 'Expand', task, 
-                    {:remote => true, 'data-toggle' => '#modal', 'data-target' => '#modal-window', 
-                    class: 'btn btn-outline-secondary btn-sm mb-2'} %>
+                <td><%= link_to 'Expand', task, class: 'btn btn-outline-secondary btn-sm mb-2' %>
                 </td>
                 <%# end modal %>
                 <td><%= link_to 'Edit', edit_task_path(task), class: 'btn btn-outline-secondary btn-sm mb-2' %></td>

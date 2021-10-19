@@ -9,19 +9,18 @@ end
 
 #initiate new task
 def new
-    @task = Task.new
+    @task = current_user.tasks.build
 end
 
 #show task
 def show
-    # redirect_to action: "index"
 end
 
 #create new task log
 def create
-    @task = current_user.task.new(task_params)
+    @task = current_user.tasks.build(task_params)
 
-    if @task.save
+    if @task.save!
         flash[:success] = 'Task listed!'
         redirect_to @task
     else
@@ -32,7 +31,7 @@ end
 
 #find editable task
 def edit
-    @task = current_user.Task.find(params[:id])
+    @task = current_user.tasks.find(params[:id])
 end
 
 #update task log
@@ -59,7 +58,7 @@ end
 
 private
     def set_task
-        @task = current_user.tasks.find(params[:id])
+        @task = current_user.tasks.find_by(id: params[:id])
     end
 
     def task_params

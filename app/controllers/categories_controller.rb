@@ -1,14 +1,15 @@
 class CategoriesController < ApplicationController
+    before_action :authenticate_user!
     before_action :set_category, only: [:edit, :update, :destroy]
 
 #initiate new category
 def new
-    @category = Category.new
+    @category = current_user.categories
 end
 
 #index all categories
 def index
-    @categories = Category.all
+    @categories = current_user.categories.build
 end
 
 #show category
@@ -18,9 +19,9 @@ end
 
 #create new category
 def create
-    @category = Category.new(category_params)
+    @category = current_user.categories.build(category_params)
 
-    if @category.save
+    if @category.save!
         redirect_to @category, notice: "Category successfully created."
     else
         render :new
@@ -29,7 +30,7 @@ end
 
 #find editable category
 def edit
-    @category = Category.find(params[:id])
+    @category = current_user.categories.find(params[:id])
 end
 
 #update category
@@ -49,10 +50,10 @@ end
 
 private
     def set_category
-        @category = Category.find(params[:id])
+        @category = current_user.categories.find_by(id: params[:id])
     end
 
     def category_params
-        params.require(:category).permit(:category_title, :category_description)
+        params.require(:category).permit(:category_title, :category_description, :user_id)
     end
 end
