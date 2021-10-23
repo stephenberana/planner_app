@@ -21,10 +21,12 @@ end
 def create
     @category = current_user.categories.build(category_params)
 
-    if @category.save!
-        redirect_to @category, notice: "Category successfully created."
-    else
-        render :new
+    begin @category.save!
+        flash[:notice] = "Category successfully created."
+        redirect_to @category 
+    rescue
+        flash[:alert] = 'All fields must be filled before a category can be created.'
+        render :new 
     end
 end
 

@@ -5,6 +5,14 @@ class TasksController < ApplicationController
 #index all tasks
 def index
     @tasks = current_user.tasks
+    @tasks_due = @tasks.where("date >= ? and date < ?", Date.current, Date.current+1).order("due_date, user_id")
+end
+
+#filter due tasks
+def filter
+    @tasks = current_user.tasks
+    @tasks_due = @tasks.where("due_date >= ? and due_date < ?", Date.current, Date.current+1).order("due_date, user_id")
+    format.html { render :action => 'filter' }
 end
 
 #initiate new task
@@ -20,11 +28,11 @@ end
 def create
     @task = current_user.tasks.build(task_params)
 
-    if @task.save!
-        flash[:success] = 'Task listed!'
+    begin @task.save!
+        flash[:notice] = 'Task listed!'
         redirect_to @task
-    else
-        flash[:warning] = 'All fields must be filled before a task can be created.'
+    rescue
+        flash[:alert] = 'All fields must be filled before a task can be created.'
         render :new
     end
 end

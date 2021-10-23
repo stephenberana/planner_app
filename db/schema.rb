@@ -31,8 +31,8 @@ ActiveRecord::Schema.define(version: 2021_10_19_004636) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "completed"
-    t.bigint "category_id", null: false
     t.integer "user_id"
+    t.bigint "category_id"
     t.index ["category_id"], name: "index_tasks_on_category_id"
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end

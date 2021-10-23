@@ -15,8 +15,11 @@
   <div class="container">
   <br/>
   <% if notice %>
-      <%= render 'layouts/alerts' %>
-  <% end %>    
+  <p class="alert alert-success"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert alert-danger"><%= alert %></p>
+    <% end %>
     <%= yield %>
   </div>  
   </body>

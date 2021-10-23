@@ -9,14 +9,22 @@
     <%= form.text_field :description, class: 'form-control mb-3', style: 'width: 40%', placeholder: "Task Description" %>
 </div>
 
+<div class="card-header">
+    <h5>Due Date</h5>
+</div>
+<br>
 <div class="form-group">
-    <%= form.label :due_date, style: 'padding: 24px' %>
+    <% form.label :due_date, style: 'padding: 24px' %>
     <%= form.date_field :due_date, class: 'form-control', style: 'width: 30%' %>
 </div>
 
+<div class="card-header">
+    <h5>Category Title</h5>
+</div>
+<br>
 <div class="mb-3"> 
-    <%= form.label :category_title, style: 'padding: 24px' %>
-    <%= form.select :category_id, Category.all.collect { |c| [c.category_title, c.id] }, { prompt: "Select a category" }, { class: 'form-select' } %>
+    <% form.label :category_title, style: 'padding: 24px' %>
+    <%= form.select :category_id, Category.all.collect { |c| [c.category_title, c.id] }, { prompt: "Select a category" }, { class: 'form-select-lg' } %>
 </div>
 
 <%# showing errors %>
@@ -30,6 +38,8 @@
     </ul>
     </div>
 <% end %>
+
+<br>
 
 <div class="actions">
     <%= form.submit "Submit", class: "btn btn-secondary" %>

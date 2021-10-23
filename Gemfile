@@ -27,6 +27,7 @@ gem 'bootstrap', '~> 5.1.0'
 gem 'popper_js'
 gem 'hirb'
 gem 'table_print'
+gem 'rexml', '~> 3.2', '>= 3.2.5'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

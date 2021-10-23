@@ -1,0 +1,38 @@
+<h1>Hello, <%= current_user.email %>!</h1>
+<h3>Here are your tasks that is due for today:</h3>
+
+<div class="table-responsive">
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th scope="col">Task</th>
+        <th scope="col">Due Date</th>
+        <th scope="col">Category</th>
+        <th scope="col">Completed?</th>
+        <th scope="col" colspan="3" >Options</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        <% @tasks_due.each do |task| %>
+            <tr>
+                <td><%= task.task_title %></td>
+                <td><%= task.due_date %></td>
+                <td><%= task.category.category_title %></td>
+                <td><%= check_box_tag :completed, task.id, task.completed?, class: 'task-completed-cb' %>
+                </td>
+                <td><%= link_to 'Expand', task, class: 'btn btn-outline-secondary btn-sm mb-2' %>
+                </td>
+                <%# end modal %>
+                <td><%= link_to 'Edit', edit_task_path(task), class: 'btn btn-outline-secondary btn-sm mb-2' %></td>
+                <td><%= link_to 'Delete', task, method: :delete, 
+                    data: { confirm: 'Are you sure you want to delete this task?' }, 
+                    class: 'btn btn-outline-danger btn-sm mb-2' %></td>
+            </tr>
+            <%end%>
+        </tbody>
+    </table>
+
+    <br> 
+     
+</div>
